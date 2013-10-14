@@ -1,0 +1,460 @@
+html{
+    height: 100%;
+}
+body{
+    min-height: 100%;
+    min-width: 320px;
+    color: #ffffff;
+    overflow: hidden;
+}
+ng-view{
+    height: 100%;
+    width: 100%;
+}
+.blue-bg{
+    background: #263545;
+}
+#logo{
+    background: url("../img/logo-small-black.png") center center no-repeat;
+    margin: 16px 0;
+    width: 55px;
+    display: inline-block;
+}
+
+.inline-list{
+    padding-top: 19px;
+    margin-bottom: 7px;
+}
+.inline-list>li {
+    /*margin-right: 2px;*/
+    margin-right: 15px;
+    display: inline !important;
+}
+/*********************************************************************************************************************/
+/* Small devices - Tablets (>768px) */
+@media  (max-width: 767px){
+    #ticket-number{
+        font-size: 320px;
+    }
+    #await{
+        font-size: 130px;
+    }
+}
+@media screen and (min-width: 768px){
+    #ticket-number{
+        font-size: 370px;
+    }
+    #await{
+        font-size: 150px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px){
+    #ticket-number{
+        font-size: 370px;
+    }
+    #await{
+        font-size: 150px;
+    }
+}
+
+@media (min-width: 992px){
+/*iPad Medium devices - Desktops (>992px) */
+    #ticket-number{
+        font-size: 500px;
+    }
+    #await{
+        font-size: 200px;
+    }
+}
+@media (min-width: 1200px){
+    #ticket-number{
+        font-size: 650px;
+    }
+    #await{
+        font-size: 240px;
+    }
+}
+@media (max-width: 320px) {
+}
+
+/*********************************************************************************************************************/
+.pseudo{
+    border-bottom: dotted 1px;
+}
+.pseudo:hover{
+    border-bottom: none;
+}
+.as-table{
+    display: table;
+    height: 100%;
+    width: 100%
+}
+.as-table .centrify{
+    display: table-cell;
+    vertical-align: middle;
+    margin: 0 auto;
+}
+span.error {
+    font-size: 11px;
+}
+.input-sm{
+    height: 23px;
+    padding: 5px 5px;
+}
+.header{
+    padding: 10px;
+}
+.wrapper{
+    padding: 20px 30px;
+    box-sizing: border-box;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    padding-bottom: 0px;
+}
+.form-control{
+    color: #000000;
+}
+.form-group {
+    margin-bottom: 18px;
+}
+.black{
+    color: #000000;
+}
+.user-name{
+    margin-top: 5px;
+}
+.general-view-caption{
+    font-size: 20px;
+    display: block;
+    margin-bottom: 42px;
+    text-align: left;
+}
+
+.work-place{
+    font-size: 15px;
+}
+.user-name a:hover{
+    color: #81c7e1;
+}
+.main-column{
+     margin: 0 auto;
+    width: 100%;
+}
+
+.centre{
+    bottom: 0;
+    left: 0;
+    max-width: 500px;
+    margin: auto;
+    position: relative;
+    top: 0;
+    right: 0;
+    height: 100%;
+}
+#content{
+    height: 100%;
+}
+.hbox.stretch {
+    height: 100%;
+}
+.vbox {
+    height: 100%;
+}
+.vbox > header ~ section {
+    top: 70px;
+}
+.vbox > section, .vbox > footer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+#main-section{
+    max-width: 250px;
+}
+
+.to-middle{
+    /*margin: 10px auto;*/
+    float: left;
+    left: 50%;
+    position: relative;
+}
+.to-middle > ng-view,
+.to-middle > a,
+.to-middle > button,
+.to-middle > div.middle{
+    float: left;
+    position: relative;
+    right: 50%;
+}
+
+.full-height{
+    height: 100%;
+
+}
+.push-bottom{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #263545;
+    width:  100%;
+    padding-bottom: 20px;
+}
+.push-bottom.multiple-buttons{
+    width: 260px;
+    margin-left: -40px;
+}
+
+#login-form{
+    min-width: 250px;
+}
+
+.work-indicator{
+    border-radius: 6px;
+    height: 12px;
+    width: 12px;
+    position: absolute;
+    left: -25px;
+    top: 8px;
+}
+.work-indicator.await-for-a-client{
+     background: #FCED3C;
+}
+
+.work-indicator.work-in-progress{
+    background: #6ae15f;
+}
+.m-t-lg2{
+    margin-top: 45px;
+}
+.m-t-md2{
+    margin-top: 26px;
+}
+.m-l-sm2{
+    margin-left: 5px;
+}
+
+.overlay{
+    color:#185f97;font-size: 21px;
+    background: rgba(255, 255, 255, 0.86);
+}
+.error-overlay{
+    background: rgba(000, 000, 000, 0.4);
+}
+
+.logo-blue{
+    background: url("../img/logo-m-blue.png") no-repeat;
+}
+
+.connecting-message{
+    padding-top: 40px;
+    background-position: top center;
+}
+
+.wait-indicator{
+    background: url("../img/loader.gif") no-repeat center center;
+    width: 32px;
+    height: 32px;
+}
+.wait-indicator-white{
+    background: url("../img/loader-white.gif") no-repeat center center;
+    width: 32px;
+    height: 32px;
+}
+
+.m-0-auto{
+    margin: 0 auto;
+}
+
+.buttons-list{
+    padding-left: 0;
+    min-width: 250px;
+    display: table;
+    color: #000;
+    width: 100%
+}
+
+.jspScrollable .buttons-list > div{
+    height: 50px;
+    width: 95%
+}
+
+.buttons-list > div{
+    height: 50px;
+    width: 100%
+}
+
+.buttons-list a{
+    width: 100%;
+    color: #000000;
+    position: relative;
+    border: solid transparent 3px;
+    font-size: 11px;
+
+    background: rgb(240,240,240);
+    background: -moz-linear-gradient(top,  rgba(240,240,240,1) 0%, rgba(255,255,255,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(240,240,240,1)), color-stop(100%,rgba(255,255,255,1)));
+    background: -webkit-linear-gradient(top,  rgba(240,240,240,1) 0%,rgba(255,255,255,1) 100%);
+    background: -o-linear-gradient(top,  rgba(240,240,240,1) 0%,rgba(255,255,255,1) 100%);
+    background: -ms-linear-gradient(top,  rgba(240,240,240,1) 0%,rgba(255,255,255,1) 100%);
+    background: linear-gradient(to bottom,  rgba(240,240,240,1) 0%,rgba(255,255,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#ffffff',GradientType=0 );
+}
+
+.buttons-list a .text {
+    padding-right: 20px;
+    padding-left: 10px;
+}
+
+.buttons-list a:active{
+    background: #63d6f9;
+    border: solid #259dc5 3px;
+}
+
+.buttons-list .details{
+    /*исправить*/
+    position: absolute;
+    height: 44px;
+    background: #fff;
+    cursor: pointer;
+    right: 0px;
+    top: -7px;
+    width: 20px;
+    font-size: 14px;
+    padding-top: 17px;
+    text-align: center;
+}
+
+.modal{
+    overflow-y: auto;
+    min-width: 320px;
+    overflow: hidden;
+}
+
+.personal-queue-caption{
+    padding-left: 45px;font-size: 18px;
+    display: block;
+    margin-bottom: 35px;
+    text-align: left;
+}
+
+.personal-queue{
+    display: table;
+}
+
+.personal-queue .item{
+    color: #ffffff;
+    width:225px;
+    display: table-row;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.jspScrollable .personal-queue .item{
+    width: 95%
+}
+
+.personal-queue .item:hover{
+    background: #259dc5;
+    cursor: pointer;
+}
+.personal-queue .item .time{
+    display: table-cell;
+    padding: 5px;
+    font-weight: bold
+}
+.personal-queue .item .info{
+    display: table-cell;
+    padding: 5px;
+}
+
+.processing .info{
+    width:175px;
+    position: relative;
+    overflow: hidden;
+}
+
+.ticket{
+    position: absolute;
+    left: -35px;
+    font-weight: bold
+}
+
+.processing .info .text{
+    height: 90px;
+    overflow: hidden;
+}
+
+.main-page .number{
+    font-size: 70px;
+    display: block;
+    line-height: 1.1;
+    font-weight: bold
+}
+
+ button.os-btn i.invite-again{
+    margin: 6px 20px 0px 10px ;
+    font-size: 15px;
+}
+
+ .pointer-cursor{
+     cursor: pointer;
+ }
+
+ .details-message{
+     padding: 30px;
+     text-indent: 30px;
+     font-size: 16px;
+     text-align: justify;
+     line-height: 1.5em;
+     font-weight: bold;
+ }
+
+ .error-message{
+     padding: 20px;
+     color: #ffffff;
+     background: #e83c22
+ }
+
+ .lh-15{
+     line-height: 1.5;
+ }
+ .processing-details{
+     width: 15px;
+     position: absolute;
+     color: black;
+     text-align: center;
+     right: 0px;
+     background: #fff;
+     height: 100%;
+     cursor: pointer;
+     font-size: 15px;
+ }
+
+ .jspHorizontalBar{
+    display: none !important;
+    height: 0px !important;
+    width: 0px !important ;
+    color: transparent !important ;
+ }
+
+.jspVerticalBar{
+    width: 9px;
+}
+.jspTrack{
+    background: #263545;
+}
+.jspDrag{
+    background: #cecece;
+}
+
+
+.scroll-pane
+{
+    width: 100%;
+    height: 300px;
+    overflow: auto;
+}
