@@ -7,7 +7,6 @@ personalPanel.controller('IndexCtrl', function ($rootScope, $scope, $location, $
 
     'use strict';
 
-
     $rootScope.$on("wampConnected", function (session) {
         notifier.connection.isConnected = true;
     });
