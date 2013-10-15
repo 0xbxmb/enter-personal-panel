@@ -15,7 +15,7 @@ personalPanel.service('settings', function (localStorageService) {
         settings = {
             wampServerUrl: null,
             clientId: null,
-            refreshTimeOut: "5000"
+            refreshTimeOut: 10000
         },
 
         setDefaults = function () {

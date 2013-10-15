@@ -58,9 +58,6 @@ personalPanel.controller('MainCtrl', function ($rootScope, $scope, $log, $locati
     $rootScope.$watch("data", function (data) {
 
         if (data && data.length > 0) {
-
-            debugger;
-
             var
                 i,
                 pos,
@@ -77,18 +74,17 @@ personalPanel.controller('MainCtrl', function ($rootScope, $scope, $log, $locati
                 if (isInArray && !isActual(ticket)) { //Стал "не актуальным" - удаляем.
 
                     pos = findById($scope.tickets, ticket);
+                    $scope.tickets.splice(pos, 1);
 
-                    if (pos < $scope.tickets.length) {
-                        $scope.ticketProduct = $scope.tickets[pos + 1];
+                    if ($scope.tickets[pos]) {
+                        $scope.ticketProduct = $scope.tickets[pos];
                     } else {
-                        if (pos - 1 >= 0) {
+                        if ($scope.tickets[pos - 1]) {
                             $scope.ticketProduct = $scope.tickets[pos - 1];
                         } else {
                             $scope.ticketProduct = null;
                         }
                     }
-
-                    $scope.tickets.splice(pos, 1);
 
                 } else {
                     if (!isInArray && isActual(ticket)) { // Появился "новый"  - добавим его.
