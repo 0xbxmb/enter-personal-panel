@@ -2,7 +2,6 @@
  * Created by i.sungurov on 02.10.13.
  */
 
-
 personalPanel.controller('IndexCtrl', function ($rootScope, $scope, $location, $log, wamp, ticket, notifier) {
 
     'use strict';
