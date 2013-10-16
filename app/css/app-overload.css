@@ -54,7 +54,7 @@ ng-view{
         font-size: 370px;
     }
     #await{
-        font-size: 150px;
+        font-size: 130px;
     }
 }
 
@@ -64,7 +64,7 @@ ng-view{
         font-size: 500px;
     }
     #await{
-        font-size: 200px;
+        font-size: 180px;
     }
 }
 @media (min-width: 1200px){
