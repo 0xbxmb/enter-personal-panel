@@ -100,8 +100,8 @@ ng-view{
     display: table-cell;
     vertical-align: middle;
     margin: 0 auto;
-    /*line-height: 1;*/
-    line-height: normal;
+    line-height: 50%;
+    /*line-height: normal;*/
 }
 span.error {
     font-size: 11px;
