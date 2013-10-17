@@ -1,6 +1,6 @@
 <div class="as-table">
     <div class="centrify main-label">
-        <span ng-show="isActual(ticketProduct)" id="ticket-number">{{ticketProduct.Ticket.Prefix}}{{ticketProduct.Ticket.Number}}</span>
-        <span ng-hide="isActual(ticketProduct)" id="await">Ожидайте</span>
+        <div ng-show="isActual(ticketProduct)" id="ticket-number">{{ticketProduct.Ticket.Prefix}}{{ticketProduct.Ticket.Number}}</div>
+        <div ng-hide="isActual(ticketProduct)" id="await">Ожидайте</div>
     </div>
 </div>
