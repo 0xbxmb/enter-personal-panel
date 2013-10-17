@@ -79,6 +79,12 @@ ng-view{
 }
 
 /*********************************************************************************************************************/
+
+#authorization,
+#settings{
+    width: 250px;
+}
+
 .pseudo{
     border-bottom: dotted 1px;
 }
@@ -94,14 +100,24 @@ ng-view{
     display: table-cell;
     vertical-align: middle;
     margin: 0 auto;
+    /*line-height: 1;*/
+    line-height: normal;
 }
 span.error {
     font-size: 11px;
 }
+/*
 .input-sm{
     height: 23px;
     padding: 5px 5px;
 }
+
+#settings .input-sm{
+    height: 30px;
+    padding: 5px 10px;
+}
+*/
+
 .header{
     padding: 10px;
 }
@@ -455,10 +471,14 @@ span.error {
     background: #cecece;
 }
 
-
 .scroll-pane
 {
     width: 100%;
     height: 300px;
     overflow: auto;
+}
+
+.turned-off-screen{
+    background: black;
+    z-index: 999999;
 }
