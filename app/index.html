@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="shortcut icon" sizes="196x196" href="img/shortcut-icon.png">
-    <link rel="shortcut icon" sizes="196x196" href="nice-highres.png">
 
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!--<link rel="stylesheet" href="lib/fuelux/fuelux.css">-->
     <link rel="stylesheet" href="css/font.css" cache="false">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/ct-buttons.css">
@@ -20,7 +20,6 @@
     <link rel="icon" type="image/png" href="favicon.png"/>
 
     <meta http-equiv="refresh" content="1800">
-
 </head>
 
 <body class="blue-bg" ng-controller="IndexCtrl">
@@ -28,12 +27,14 @@
 <section class="hbox stretch">
     <section id="content">
         <section class="vbox">
-            <section class=" wrapper clearfix  m-t-sm" >
+            <section class="clearfix" >
+
                 <div class="animated fadeInUp to-middle full-height" ng-show="connection.isConnected">
-                    <ng-view class="main-column">
-                    </ng-view>
+                    <ng-view class="main-column"></ng-view>
                 </div>
                 <os-notifier></os-notifier>
+                <!--<div class="modal turned-off-screen" ng-class="{'show':isTurnedOff}"></div>-->
+
             </section>
         </section>
     </section>
@@ -51,6 +52,7 @@
 <script src="lib/angular/angular-locale_ru.js"></script>
 <script src="lib/angular/angular-cookies.min.js"></script>
 <script src="lib/angular-local-storage.js"></script>
+<!--<script src="lib/fuelux/fuelux.js"></script>-->
 
 
 <!-- app -->
@@ -63,10 +65,15 @@
 <script src="js/services/settings.js"></script>
 <script src="js/services/notifier.js"></script>
 <script src="js/services/timeFunctions.js"></script>
+<!--<script src="js/services/state.js"></script>-->
 <!-- end app.services -->
 
 <!-- app.directives -->
 <script src="js/directives/notifier.js"></script>
+<!--<script src="js/directives/onEnter.js"></script>
+
+<script src="js/directives/inputs/boolInput.js"></script>
+<script src="js/directives/inputs/integerInput.js"></script>-->
 <!-- end app.directives -->
 
 <!-- app.controllers -->
