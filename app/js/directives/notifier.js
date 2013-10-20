@@ -2,7 +2,7 @@
  * Created by i.sungurov on 08.10.13.
  */
 
-personalPanel.directive("osNotifier", function (notifier) {
+personalPanel.directive("notifier", function (notifier) {
 
     "use strict";
 

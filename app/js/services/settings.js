@@ -9,47 +9,47 @@ personalPanel.service('settings', function (localStorageService) {
         DEFAULT_LOGIN = "admin",
         DEFAULT_PASSWORD = "1",
 
-        DEFAULT_WAMP_SERVER_URL = "ws://test-zone.comintech.ru:81",
-        DEFAULT_CLIENT_ID = "android1",
-
-        wampServerLocalStorageKey = "panelWampServerUrl",
-        clientIdLocalStorageKey = "panelClientId",
-
-
+        prefix = "panel.",
 
         settings = {
-            wampServerUrl: null,
-            clientId: null,
-            refreshTimeOut: 10000
+            wampServerUrl: {
+                value: "",
+                defaultValue: "ws://localhost:81"
+            },
+            clientId: {
+                value: "",
+                defaultValue: "android1"
+            },
+            refreshTimeOut: {
+                value: null,
+                defaultValue: 10
+            },
+            showAdvertisement: {
+                value: null,
+                defaultValue: false
+            }
         },
 
         setDefaults = function () {
-            settings.wampServerUrl = DEFAULT_WAMP_SERVER_URL;
-            settings.clientId = DEFAULT_CLIENT_ID;
+            _.each(settings, function (obj, key) {
+                settings[key].value = settings[key].defaultValue;
+            });
         },
 
         loadFromStorage = function () {
-
-            settings.wampServerUrl = localStorageService.get(wampServerLocalStorageKey);
-            settings.clientId = localStorageService.get(clientIdLocalStorageKey);
-
-            if (!settings.wampServerUrl) {
-                settings.wampServerUrl = DEFAULT_WAMP_SERVER_URL;
-            }
-
-            if (!settings.clientId) {
-                settings.clientId = DEFAULT_CLIENT_ID;
-            }
+            _.each(settings, function (obj, key) {
+                settings[key].value = localStorageService.get(prefix + key);
+                if (!settings[key].value) {
+                    settings[key].value = settings[key].defaultValue;
+                }
+            });
         },
 
         applyNewSettings = function (newSettings) {
-
-            settings.wampServerUrl = newSettings.serverAddress;
-            settings.clientId = newSettings.workPlaceId;
-
-            localStorageService.set(wampServerLocalStorageKey, settings.wampServerUrl);
-            localStorageService.set(clientIdLocalStorageKey, settings.clientId);
-
+            _.each(newSettings, function (obj, key) {
+                settings[key].value = newSettings[key].value;
+                localStorageService.set(prefix + key, settings[key].value);
+            });
         };
 
     loadFromStorage();

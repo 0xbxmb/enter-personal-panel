@@ -170,6 +170,7 @@ span.error {
     height: 100%;
 }
 #content{
+    overflow: hidden;
     height: 100%;
 }
 .hbox.stretch {

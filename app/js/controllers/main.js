@@ -3,7 +3,7 @@
  */
 
 personalPanel.controller('MainCtrl', function ($rootScope, $scope, $log, $location, $timeout, $window,
-                                               settings, ticket, notifier, timeFunctions) {
+                                               settings, ticket, notifier) {
 
     'use strict';
 
@@ -17,89 +17,82 @@ personalPanel.controller('MainCtrl', function ($rootScope, $scope, $log, $locati
                 return false;
             }
 
-            return ((ticketProduct.State === invited) || (ticketProduct.State === operating));
+            return ((ticketProduct.State === invited)
+                 || (ticketProduct.State === operating));
         },
-        findById = function (tickets, ticket) {
-            if (tickets && ticket) {
-                var i;
+
+        advertisementAction = function ($scope) {
+//            advertisement, timeFunctions, timer
+            if ($scope.advertisement && $scope.advertisement.type === 2) {
+
+                $scope.pause($scope);
+
+                _V_("video1", {
+                    "controls": false,
+                    "autoplay": true,
+                    "preload": "auto"
+                }, function () {
+                    $scope.pause($scope);
+                    debugger;
+                });
+            }
+        },
+
+        applyTicketChanges = function (tickets) {
+
+            if (tickets && tickets.length) {
+
+                var
+                    i, pos,
+                    isInArray;
+
                 for (i = 0; i < tickets.length; i += 1) {
-                    if (tickets[i].Id === ticket.Id) {
-                        return i;
+
+                    isInArray = _.any($scope.ticketCarousel.items, function (item) {
+                        return item.Id === tickets[i].Id;
+                    });
+
+                    if (isInArray && !isActual(tickets[i])) {     // Ушел из обработки - удаляем из очереди.
+
+                        _.find($scope.ticketCarousel.items, function (item, index) {
+                            if (item.Id === tickets[i].Id) {
+                                pos = index;
+                                return true;
+                            }
+                            return false;
+                        });
+
+                        $scope.ticketCarousel.items.splice(pos, 1);
+                    } else {
+
+                        if (!isInArray && isActual(tickets[i])) {  // Появился "новый"  - добавим его.
+                            $scope.ticketCarousel.items.unshift(tickets[i]);    // Вставлять в начало списка
+                        }
+
                     }
                 }
             }
-            return -1;
-        },
-        startCarousel = function () {
-
-            timeFunctions.$setInterval(function ($scope) {
-
-                var pos;
-
-                if ($scope.tickets && $scope.tickets.length > 0) {
-
-                    pos = findById($scope.tickets, $scope.ticketProduct);
-
-                    if (pos < $scope.tickets.length - 1) {
-                        $scope.ticketProduct = $scope.tickets[pos + 1];
-                    } else {
-                        $scope.ticketProduct = $scope.tickets[0];
-                    }
-
-                } else {
-                    $scope.ticketProduct =  null;
-                }
-
-            }, settings.settings.refreshTimeOut, $scope);
         };
 
-    $scope.tickets = [];
+    $rootScope.$watch("data", applyTicketChanges,
+        function (error) {
+            notifier.errors.currentMessage = error.desc;
+        });
 
-    $rootScope.$watch("data", function (data) {
+    $scope.settings = settings.settings;
 
-        if (data && data.length > 0) {
-            var
-                i,
-                pos,
-                ticket,
-                isInArray;
+    $scope.ticketCarousel = {
+        items: [],
+        active: true,
+        delay: $scope.settings.refreshTimeOut.value,
+        itemAction: isActual
+    };
 
-            for (i = 0; i < data.length; i += 1) {
-
-                ticket = data[i];
-                isInArray = _.any($scope.tickets, function (item) {
-                    return item.Id === ticket.Id;
-                });
-
-                if (isInArray && !isActual(ticket)) { //Стал "не актуальным" - удаляем.
-
-                    pos = findById($scope.tickets, ticket);
-                    $scope.tickets.splice(pos, 1);
-
-                    if ($scope.tickets[pos]) {
-                        $scope.ticketProduct = $scope.tickets[pos];
-                    } else {
-                        if ($scope.tickets[pos - 1]) {
-                            $scope.ticketProduct = $scope.tickets[pos - 1];
-                        } else {
-                            $scope.ticketProduct = null;
-                        }
-                    }
-
-                } else {
-                    if (!isInArray && isActual(ticket)) { // Появился "новый"  - добавим его.
-                        $scope.tickets.push(ticket);
-                        $scope.ticketProduct = ticket;
-                    }
-                }
-            }
-        }
-    }, function (error) {
-        notifier.errors.currentMessage = error.desc;
-    });
-
-    $scope.isActual = isActual;
-
-    startCarousel();
+    $scope.advertisementCarousel = {
+        items: $rootScope.advertisements,
+        active: true,
+        delay: $scope.settings.refreshTimeOut.value,
+        itemAction: advertisementAction
+    };
 
 });

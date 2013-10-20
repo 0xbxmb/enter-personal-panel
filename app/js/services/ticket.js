@@ -7,7 +7,6 @@ personalPanel.service('ticket', function ($q, $log, $rootScope, wamp, TICKET_CHA
     'use strict';
 
     var
-
         trackTicket = function (onEvent) {
             wamp.subscribe(TICKET_CHANGES_NOTIFICATIONS_URL, onEvent);
         },

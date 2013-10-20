@@ -1,6 +1,5 @@
-<div class="centre">
-
-    <div style="width: 250px" ng-show="isNotLogged">
+<div class="centre wrapper m-t-lg">
+    <div ng-show="isNotLogged" id="authorization">
         <form name="settingsForm" novalidate="true" id="settings-login-form" class="form-horizontal">
             <div class="form-group">
                 <span class="col-sm-12 col-md-12 control-label">Имя пользователя</span>
@@ -16,7 +15,8 @@
 
                 <div class="col-sm-12 col-md-12">
                     <input type="password" class="form-control input-sm m-t-sm"
-                           ng-model="password" />
+                           ng-model="password"
+                           on-enter="logon()"/>
                 </div>
             </div>
 
@@ -26,22 +26,19 @@
 
         <div class="push-bottom">
             <div class="to-middle">
-                <button  class="os-btn a-btn a-r green m-t-sm l-btn" ng-click="logon()"  ng-disabled="!login || !password">
-                    Вход
-                </button>
+                <button  class="os-btn a-btn a-r green m-t-sm l-btn" ng-click="logon()"  ng-disabled="!login || !password">Вход</button>
             </div>
         </div>
     </div>
 
-    <div class=" main-column" ng-hide="isNotLogged" style="width: 250px">
+    <div class=" main-column" ng-hide="isNotLogged"  id="settings">
         <form name="settingsForm" novalidate="true" id="settings-form" class="form-horizontal">
             <div class="form-group">
                 <span class="col-sm-12 col-md-12 control-label">Идентификатор рабочего места</span>
 
                 <div class="col-sm-12 col-md-12">
                     <input type="text" required class="bg-focus form-control input-sm m-t-sm"
-                           ng-model="workPlaceId"  />
-
+                           ng-model="settingsObject.clientId.value"  />
                 </div>
             </div>
 
@@ -50,8 +47,26 @@
 
                 <div class="col-sm-12 col-md-12">
                     <input type="text" required class="form-control input-sm m-t-sm"
-                           ng-model="serverAddress" />
+                           ng-model="settingsObject.wampServerUrl.value"
+                           on-enter="apply()"
+                           />
                 </div>
+            </div>
+
+            <div class="form-group">
+                <span class="col-sm-12 col-md-12 control-label" style="text-align: left">Интервал смены талончика,  сек.</span>
+                <div class="col-sm-12 col-md-12 m-t-sm">
+                    <ad-int-input value="settingsObject.refreshTimeOut.value"> </ad-int-input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-1 col-md-1 col-xs-1">
+                    <ad-bool-input value="settingsObject.showAdvertisement.value"></ad-bool-input>
+                </div>
+                <span class="col-sm-8 col-md-8 col-xs-8 control-label" style="text-align: left">
+                    Отображать рекламу
+                </span>
             </div>
         </form>
 
@@ -60,10 +75,9 @@
                 <button class="os-btn m-t-sm l-btn a-btn a-l" ng-click="cancel()">
                     Отмена
                 </button>
-                <button  class="os-btn green m-t-sm l-btn m-l-sm2" ng-click="apply()"  ng-disabled="!workPlaceId || !serverAddress">
+                <button  class="os-btn green m-t-sm l-btn m-l-sm2" ng-click="apply()"  ng-disabled="!settingsObject.clientId.value || !settingsObject.wampServerUrl.value">
                     Сохранить
                 </button>
-
             </div>
         </div>
     </div>

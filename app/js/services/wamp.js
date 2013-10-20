@@ -15,7 +15,7 @@ personalPanel.service('wamp', function ($q, $log, $rootScope, notifier, settings
 
             ab.connect(
                 // The WebSocket URI of the WAMP server
-                settings.settings.wampServerUrl,
+                settings.settings.wampServerUrl.value,
 
                 // The onconnect handler
                 function (session) {
@@ -32,7 +32,7 @@ personalPanel.service('wamp', function ($q, $log, $rootScope, notifier, settings
                     }
                     _session = session;
 
-                    _session.call(SEND_ID_URL, [ settings.settings.clientId, clientType]).then(function (data) {
+                    _session.call(SEND_ID_URL, [ settings.settings.clientId.value, clientType]).then(function (data) {
 
                         $rootScope.workplace = data;
                         notifier.connection.isConnected = true;
@@ -123,6 +123,7 @@ personalPanel.service('wamp', function ($q, $log, $rootScope, notifier, settings
             for (var s in subscriptions) {
                 if (!_hasSubscriptions(s, session)) {
                     if (subscriptions[s].length > 0) {
+                        debugger;
                         _subscribe(s, subscriptions[s][0], session);
                     }
                 }

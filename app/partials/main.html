@@ -1,9 +1,22 @@
 <div class="as-table m-t-n-sm">
     <div class="centrify main-label">
-        <div ng-show="isActual(ticketProduct)" id="ticket-number">{{ticketProduct.Ticket.Prefix}}{{ticketProduct.Ticket.Number}}</div>
-        <div ng-hide="isActual(ticketProduct)" id="await" class=" m-t-n-sm">Ожидайте</div>
+        <!--ng-show="ticketCarousel.items.length || (!ticketCarousel.items.length && !settings.showAdvertisement.value)"-->
+        <div >
+            <carousel delay="ticketCarousel.delay"
+                      is-active="ticketCarousel.active"
+                      items="ticketCarousel.items"
+                      item-action="ticketCarousel.itemAction"
+                      item-template-url="templates/carousel/ticketItem.html"></carousel>
+        </div>
+
+        <!--ng-show="!ticketCarousel.items.length && settings.showAdvertisement.value"-->
+        <div class="hidden">
+            <carousel delay="advertisementCarousel.delay"
+                      is-active="advertisementCarousel.active"
+                      items="advertisementCarousel.items"
+                      item-action="advertisementCarousel.itemAction"
+                      item-template-url="templates/carousel/advertisementItem.html"></carousel>
+        </div>
+
     </div>
 </div>
-
-
-
