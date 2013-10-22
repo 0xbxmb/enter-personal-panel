@@ -1,44 +1,15 @@
 <div>
-
     <div ng-show="currentItem.type == 1">
         <img src="{{currentItem.source}}">
     </div>
 
-
-    <!--.addEventListener('ended',myHandler,false);
-    function myHandler(e) {
-    if(!e) { e = window.event; }
-    // What you want to do after the event
-    }-->
-
     <div ng-show="currentItem.type == 2">
-
         {{itemAction(this)}}
-
-        <video id="video1"
+        <video id="video"
                class="video-js vjs-default-skin"
-
                width="640"
                height="480"
-
-               poster="http://video-js.zencoder.com/oceans-clip.png"
-               controls="false"
-               preload="auto"
-
-               data-setup='{"example_option":true}'>
-<!--
-
-            <source src="http://localhost:8000/app/data/oceans-clip.mp4" type='video/mp4' />
-            <source src="http://localhost:8000/app/data/oceans-clip.webm" type='video/webm' />
-            <source src="http://localhost:8000/app/data/oceans-clip.ogv" type='video/ogg' />
--->
-
-            <source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
-            <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
-            <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />
-
-
+               preload="auto">
         </video>
-
     </div>
 </div>

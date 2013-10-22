@@ -2,7 +2,7 @@
  * Created by i.sungurov on 17.10.13.
  */
 
-personalPanel.directive("carousel", function (timeFunctions) {
+personalPanel.directive("carousel", function ($timeout) {
 
     "use strict";
 
@@ -10,9 +10,6 @@ personalPanel.directive("carousel", function (timeFunctions) {
         templateUrl = "templates/carousel.html",
         replace = true,
         restrict = 'E',
-
-        itemIndex = 0,
-
         scope = {
             delay: "=",
             isActive: "=",
@@ -21,72 +18,82 @@ personalPanel.directive("carousel", function (timeFunctions) {
             itemTemplateUrl: "@"
         },
 
-        getCurrentIndex = function () {
-            return itemIndex;
-        },
-
-        resume = function ($scope) {
-            if (!$scope) {
-                return;
-            }
-            $scope.timer = timeFunctions.$setInterval(function ($scope) {
-                if ($scope.items && $scope.items.length) {
-                    if (itemIndex < $scope.items.length) {
-                        $scope.currentItem = $scope.items[itemIndex];
-                        itemIndex += 1;
-                    } else {
-                        itemIndex = 0;
-                    }
-                }
-            }, $scope.delay * 1000, $scope);
-        },
-
-        start = function ($scope) {
-            itemIndex = 0;
-            resume();
-        },
-
-        pause = function ($scope) {
-            if ($scope.timer) {
-                timeFunctions.$clearInterval($scope.timer);
-            }
-        },
-
         link = function ($scope, iElement, iAttrs) {
 
-            $scope.isActive = $scope.$eval(iAttrs.isActive);
+
             $scope.itemTemplateUrl = iAttrs.itemTemplateUrl;
 
-            $scope.timeFunctions = timeFunctions;
-
-            $scope.start = start;
-            $scope.pause = pause;
-
-            $scope.$watch("items", function (data) {
-                if ($scope.isActive) {
-                    if ($scope.timer) {
-                        timeFunctions.$clearInterval($scope.timer);
+            $scope.run = function (operation, delay) {
+                $scope.stop = $timeout(function () {
+                    if (!$scope.isStopped()) {
+                        operation();
+                        $scope.run(operation, delay);
+                    } else {
+                        $timeout.cancel($scope.stop);
                     }
-                    start($scope);
+                }, delay);
+            };
+
+            $scope.isStopped = function () {
+                return $scope.isActive !== true;
+            };
+
+            $scope.showNextItem = function ($scope) {
+                if ($scope.items && $scope.items.length) {
+                    $scope.currentItem = $scope.items[$scope.itemIndex];
+                    if ($scope.itemIndex < $scope.items.length - 1) {
+                        $scope.itemIndex += 1;
+                    } else {
+                        $scope.itemIndex = 0;
+                    }
+                } else {
+                    $scope.currentItem = null;
                 }
-            });
+            };
 
             $scope.$watch("items.length", function (data) {
-                if ($scope.isActive) {
-                    if ($scope.timer) {
-                        timeFunctions.$clearInterval($scope.timer);
-                    }
-                    start($scope);
+                if (data > 0 && !$scope.isStopped()) {
+                    $scope.start();
+                } else {
+                    $scope.pause();
                 }
             });
 
             $scope.$watch("isActive", function (data) {
-                if (!data && $scope.timer) {
-                    timeFunctions.$clearInterval($scope.timer);
+                if (data && $scope.items.length) {
+                    $scope.resume();
                 } else {
-                    start($scope);
+                    $scope.pause();
                 }
             });
+
+            $scope.carousel = function (skipShowNext) {
+                $timeout.cancel($scope.stop);
+                $scope.isActive = true;
+                if (!skipShowNext) {
+                    $scope.showNextItem($scope);
+                }
+                $scope.run(function () {
+                    $scope.showNextItem($scope);
+                }, $scope.delay * 1000);
+            };
+
+            $scope.start = function () {
+                $scope.itemIndex = 0;
+                $scope.carousel();
+            };
+
+            $scope.resume = function () {
+                $scope.carousel(true);
+            };
+
+            $scope.pause = function () {
+                if (!$scope.isStopped()) {
+                    $scope.isActive = false;
+                    $timeout.cancel($scope.stop);
+                }
+            };
+
         };
 
     return {

@@ -123,7 +123,6 @@ personalPanel.service('wamp', function ($q, $log, $rootScope, notifier, settings
             for (var s in subscriptions) {
                 if (!_hasSubscriptions(s, session)) {
                     if (subscriptions[s].length > 0) {
-                        debugger;
                         _subscribe(s, subscriptions[s][0], session);
                     }
                 }

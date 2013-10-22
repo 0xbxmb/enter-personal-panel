@@ -21,38 +21,18 @@ personalPanel.controller('IndexCtrl', function ($rootScope, $scope, $location, $
         notifier.errors.currentMessage = error.desc;
     });
 
-/*    advertisement.trackAdvertisment(function (data) {
-        $rootScope.advertisements = data;
+    advertisement.trackAdvertisement(function (data) {
+        $rootScope.advertisements = data || [];
     }, function (error) {
         notifier.errors.currentMessage = error.desc;
-    });*/
-
-    $rootScope.advertisements = [
-        {
-            type: 1,
-            source: "http://media02.hongkiat.com/creative-ads/mm.jpg"
-        },
-        {
-            type: 1,
-            source: "http://media02.hongkiat.com/creative-ads/fedex.jpg"
-        },
-        {
-            type: 2,
-            source: "http://video-js.zencoder.com/oceans-clip.mp4"
-        }
-    ];
+    });
 
     state.trackState(function (data) {
-
         var
             turnOff = 0,
             turnOn = 1;
-
         $scope.isTurnedOff = (data === turnOff);
-
     }, function (error) {
-
         notifier.errors.currentMessage = error.desc;
-
     });
 });

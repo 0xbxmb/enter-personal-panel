@@ -1,4 +1,1 @@
-<div>
-    <div ng-show="itemAction(currentItem)" id="ticket-number">{{currentItem.Ticket.Prefix}}{{currentItem.Ticket.Number}}</div>
-    <div ng-show="!itemAction(currentItem) || !items.length" id="await" class="m-t-n-sm">Ожидайте</div>
-</div>
+<div ng-show="itemAction(currentItem)" id="ticket-number">{{currentItem.Ticket.Prefix}}{{currentItem.Ticket.Number}}</div>

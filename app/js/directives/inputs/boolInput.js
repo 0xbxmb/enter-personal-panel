@@ -20,7 +20,7 @@ personalPanel.directive('adBoolInput', function () {
         link = function ($scope, element, attributes) {
 
             $scope.$watch("value", function (data) {
-                if (data === "true") {
+                if (data === true) {
                     $(element).find("input").attr('checked', true);
                 } else {
                     $(element).find("input").removeAttr('checked');

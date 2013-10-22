@@ -1,16 +1,20 @@
 <div class="as-table m-t-n-sm">
     <div class="centrify main-label">
-        <!--ng-show="ticketCarousel.items.length || (!ticketCarousel.items.length && !settings.showAdvertisement.value)"-->
-        <div >
-            <carousel delay="ticketCarousel.delay"
-                      is-active="ticketCarousel.active"
-                      items="ticketCarousel.items"
-                      item-action="ticketCarousel.itemAction"
-                      item-template-url="templates/carousel/ticketItem.html"></carousel>
+
+        <div ng-show="ticketCarousel.items.length || !settings.showAdvertisement.value">
+            <div ng-show="ticketCarousel.items.length">
+                <carousel delay="ticketCarousel.delay"
+                          is-active="ticketCarousel.active"
+                          items="ticketCarousel.items"
+                          item-action="ticketCarousel.itemAction"
+                          item-template-url="templates/carousel/ticketItem.html"></carousel>
+            </div>
+            <div ng-hide="ticketCarousel.items.length" id="await" class="m-t-n-sm">
+                Ожидайте
+            </div>
         </div>
 
-        <!--ng-show="!ticketCarousel.items.length && settings.showAdvertisement.value"-->
-        <div class="hidden">
+        <div ng-show="!ticketCarousel.items.length && settings.showAdvertisement.value">
             <carousel delay="advertisementCarousel.delay"
                       is-active="advertisementCarousel.active"
                       items="advertisementCarousel.items"
