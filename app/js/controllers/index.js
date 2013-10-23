@@ -21,8 +21,9 @@ personalPanel.controller('IndexCtrl', function ($rootScope, $scope, $location, $
         notifier.errors.currentMessage = error.desc;
     });
 
+    $rootScope.advertisements = [];
     advertisement.trackAdvertisement(function (data) {
-        $rootScope.advertisements = data || [];
+        $rootScope.advertisements = data;
     }, function (error) {
         notifier.errors.currentMessage = error.desc;
     });
